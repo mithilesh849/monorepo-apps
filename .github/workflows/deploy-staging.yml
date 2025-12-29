@@ -35,13 +35,13 @@ jobs:
         run: cd ../.. && cd apps/api && npm run build
 
       - name: Deploy to Vercel (Staging)
-        working-directory: ./apps/api
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_API }}
           vercel-args: '--prod=false --yes'
+          working-directory: ./apps/api
 
   deploy-web1:
     name: Deploy Web1 to Staging
@@ -66,13 +66,13 @@ jobs:
         run: cd ../.. && cd apps/web1 && npm run build
 
       - name: Deploy to Vercel (Staging)
-        working-directory: ./apps/web1
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
           vercel-args: '--prod=false --yes'
+          working-directory: ./apps/web1
 
   deploy-web2:
     name: Deploy Web2 to Staging
@@ -97,11 +97,11 @@ jobs:
         run: cd ../.. && cd apps/web2 && npm run build
 
       - name: Deploy to Vercel (Staging)
-        working-directory: ./apps/web2
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
           vercel-args: '--prod=false --yes'
+          working-directory: ./apps/web2
 
