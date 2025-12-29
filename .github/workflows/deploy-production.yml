@@ -34,8 +34,12 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
+      - name: Link Vercel Project (API)
+        run: |
+          mkdir -p .vercel
+          echo "{\"projectId\":\"${{ secrets.VERCEL_PROJECT_ID_API }}\",\"orgId\":\"${{ secrets.VERCEL_ORG_ID }}\"}" > .vercel/project.json
+
       - name: Deploy to Vercel (Production)
-        working-directory: apps/api
         run: |
           vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --yes
         env:
@@ -67,8 +71,12 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
+      - name: Link Vercel Project (Web1)
+        run: |
+          mkdir -p .vercel
+          echo "{\"projectId\":\"${{ secrets.VERCEL_PROJECT_ID_WEB1 }}\",\"orgId\":\"${{ secrets.VERCEL_ORG_ID }}\"}" > .vercel/project.json
+
       - name: Deploy to Vercel (Production)
-        working-directory: apps/web1
         run: |
           vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --yes
         env:
@@ -100,8 +108,12 @@ jobs:
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
 
+      - name: Link Vercel Project (Web2)
+        run: |
+          mkdir -p .vercel
+          echo "{\"projectId\":\"${{ secrets.VERCEL_PROJECT_ID_WEB2 }}\",\"orgId\":\"${{ secrets.VERCEL_ORG_ID }}\"}" > .vercel/project.json
+
       - name: Deploy to Vercel (Production)
-        working-directory: apps/web2
         run: |
           vercel --prod --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --yes
         env:
