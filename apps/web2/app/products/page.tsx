@@ -1,9 +1,9 @@
-import { getProducts } from '@/lib/api';
+import { getProducts, Product } from '@/lib/api';
 import Link from 'next/link';
 
 export default async function ProductsPage() {
-  let products = [];
-  let error = null;
+  let products: Product[] = [];
+  let error: string | null = null;
 
   try {
     products = await getProducts();
