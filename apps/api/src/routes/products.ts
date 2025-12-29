@@ -57,16 +57,29 @@ router.post('/', async (req, res) => {
       return res.status(400).json({ error: 'appType must be 1 or 2' });
     }
 
+    const productData: {
+      name: string;
+      description?: string | null;
+      price: number;
+      image?: string | null;
+      category?: string | null;
+      appType?: number;
+      inStock: boolean;
+    } = {
+      name,
+      description,
+      price: parseFloat(price),
+      image,
+      category,
+      inStock: inStock !== undefined ? inStock : true,
+    };
+
+    if (appType !== undefined) {
+      productData.appType = parseInt(appType, 10);
+    }
+
     const product = await prisma.product.create({
-      data: {
-        name,
-        description,
-        price: parseFloat(price),
-        image,
-        category,
-        appType: appType !== undefined ? parseInt(appType, 10) : undefined,
-        inStock: inStock !== undefined ? inStock : true,
-      },
+      data: productData,
     });
 
     res.status(201).json(product);
