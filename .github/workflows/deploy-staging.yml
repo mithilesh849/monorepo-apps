@@ -38,8 +38,8 @@ jobs:
         run: npm install --global vercel@latest
 
       - name: Deploy to Vercel (Staging)
+        working-directory: apps/api
         run: |
-          cd apps/api
           vercel --prod=false --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --yes
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -71,8 +71,8 @@ jobs:
         run: npm install --global vercel@latest
 
       - name: Deploy to Vercel (Staging)
+        working-directory: apps/web1
         run: |
-          cd apps/web1
           vercel --prod=false --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --yes
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -104,8 +104,8 @@ jobs:
         run: npm install --global vercel@latest
 
       - name: Deploy to Vercel (Staging)
+        working-directory: apps/web2
         run: |
-          cd apps/web2
           vercel --prod=false --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --yes
         env:
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
