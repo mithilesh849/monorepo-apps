@@ -29,7 +29,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: cd ../.. && npm ci
+
+      - name: Build
+        run: cd ../.. && cd apps/api && npm run build
 
       - name: Pull Vercel Environment Information
         uses: amondnet/vercel-action@v25
@@ -66,7 +69,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: cd ../.. && npm ci
+
+      - name: Build
+        run: cd ../.. && cd apps/web1 && npm run build
 
       - name: Pull Vercel Environment Information
         uses: amondnet/vercel-action@v25
@@ -103,7 +109,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci
+        run: cd ../.. && npm ci
+
+      - name: Build
+        run: cd ../.. && cd apps/web2 && npm run build
 
       - name: Pull Vercel Environment Information
         uses: amondnet/vercel-action@v25
