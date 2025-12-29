@@ -34,22 +34,13 @@ jobs:
       - name: Build
         run: cd ../.. && cd apps/api && npm run build
 
-      - name: Pull Vercel Environment Information
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_API }}
-          vercel-args: '--prod=false'
-          working-directory: ./apps/api
-
       - name: Deploy to Vercel (Develop)
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_API }}
-          vercel-args: '--prod=false --scope=${{ secrets.VERCEL_ORG_ID }}'
+          vercel-args: '--prod=false'
           working-directory: ./apps/api
 
   deploy-web1:
@@ -74,22 +65,13 @@ jobs:
       - name: Build
         run: cd ../.. && cd apps/web1 && npm run build
 
-      - name: Pull Vercel Environment Information
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
-          vercel-args: '--prod=false'
-          working-directory: ./apps/web1
-
       - name: Deploy to Vercel (Develop)
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
-          vercel-args: '--prod=false --scope=${{ secrets.VERCEL_ORG_ID }}'
+          vercel-args: '--prod=false'
           working-directory: ./apps/web1
 
   deploy-web2:
@@ -114,21 +96,12 @@ jobs:
       - name: Build
         run: cd ../.. && cd apps/web2 && npm run build
 
-      - name: Pull Vercel Environment Information
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
-          vercel-args: '--prod=false'
-          working-directory: ./apps/web2
-
       - name: Deploy to Vercel (Develop)
         uses: amondnet/vercel-action@v25
         with:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
-          vercel-args: '--prod=false --scope=${{ secrets.VERCEL_ORG_ID }}'
+          vercel-args: '--prod=false'
           working-directory: ./apps/web2
 
