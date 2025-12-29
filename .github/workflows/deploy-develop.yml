@@ -1,0 +1,125 @@
+name: Deploy to Develop
+
+on:
+  push:
+    branches: [develop]
+  workflow_dispatch:
+
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID_API: ${{ secrets.VERCEL_PROJECT_ID_API }}
+  VERCEL_PROJECT_ID_WEB1: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
+  VERCEL_PROJECT_ID_WEB2: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
+
+jobs:
+  deploy-api:
+    name: Deploy API to Develop
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/api
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pull Vercel Environment Information
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_API }}
+          vercel-args: '--prod=false'
+          working-directory: ./apps/api
+
+      - name: Deploy to Vercel (Develop)
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_API }}
+          vercel-args: '--prod=false --scope=${{ secrets.VERCEL_ORG_ID }}'
+          working-directory: ./apps/api
+
+  deploy-web1:
+    name: Deploy Web1 to Develop
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/web1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pull Vercel Environment Information
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
+          vercel-args: '--prod=false'
+          working-directory: ./apps/web1
+
+      - name: Deploy to Vercel (Develop)
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
+          vercel-args: '--prod=false --scope=${{ secrets.VERCEL_ORG_ID }}'
+          working-directory: ./apps/web1
+
+  deploy-web2:
+    name: Deploy Web2 to Develop
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./apps/web2
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Pull Vercel Environment Information
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
+          vercel-args: '--prod=false'
+          working-directory: ./apps/web2
+
+      - name: Deploy to Vercel (Develop)
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
+          vercel-args: '--prod=false --scope=${{ secrets.VERCEL_ORG_ID }}'
+          working-directory: ./apps/web2
+
