@@ -40,7 +40,7 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_API }}
-          vercel-args: '--prod=false --yes'
+          vercel-args: '--prod=false'
           working-directory: ./apps/api
 
   deploy-web1:
@@ -71,7 +71,7 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
-          vercel-args: '--prod=false --yes'
+          vercel-args: '--prod=false'
           working-directory: ./apps/web1
 
   deploy-web2:
@@ -102,6 +102,6 @@ jobs:
           vercel-token: ${{ secrets.VERCEL_TOKEN }}
           vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
           vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
-          vercel-args: '--prod=false --yes'
+          vercel-args: '--prod=false'
           working-directory: ./apps/web2
 
