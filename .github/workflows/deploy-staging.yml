@@ -34,14 +34,16 @@ jobs:
       - name: Build
         run: cd ../.. && cd apps/api && npm run build
 
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
       - name: Deploy to Vercel (Staging)
         working-directory: ./apps/api
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_API }}
-          vercel-args: '--prod=false'
+        run: |
+          vercel --prod=false --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --confirm
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_API }}
 
   deploy-web1:
     name: Deploy Web1 to Staging
@@ -65,14 +67,16 @@ jobs:
       - name: Build
         run: cd ../.. && cd apps/web1 && npm run build
 
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
       - name: Deploy to Vercel (Staging)
         working-directory: ./apps/web1
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
-          vercel-args: '--prod=false'
+        run: |
+          vercel --prod=false --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --confirm
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_WEB1 }}
 
   deploy-web2:
     name: Deploy Web2 to Staging
@@ -96,12 +100,14 @@ jobs:
       - name: Build
         run: cd ../.. && cd apps/web2 && npm run build
 
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
       - name: Deploy to Vercel (Staging)
         working-directory: ./apps/web2
-        uses: amondnet/vercel-action@v25
-        with:
-          vercel-token: ${{ secrets.VERCEL_TOKEN }}
-          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
-          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
-          vercel-args: '--prod=false'
+        run: |
+          vercel --prod=false --token ${{ secrets.VERCEL_TOKEN }} --scope ${{ secrets.VERCEL_ORG_ID }} --confirm
+        env:
+          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID_WEB2 }}
 
