@@ -52,9 +52,6 @@ jobs:
   deploy-web1:
     name: Deploy Web1 to Develop
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./apps/web1
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -66,10 +63,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: cd ../.. && npm ci
+        run: npm ci
 
       - name: Build
-        run: cd ../.. && cd apps/web1 && npm run build
+        run: cd apps/web1 && npm run build
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
@@ -89,9 +86,6 @@ jobs:
   deploy-web2:
     name: Deploy Web2 to Develop
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./apps/web2
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -103,10 +97,10 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: cd ../.. && npm ci
+        run: npm ci
 
       - name: Build
-        run: cd ../.. && cd apps/web2 && npm run build
+        run: cd apps/web2 && npm run build
 
       - name: Install Vercel CLI
         run: npm install --global vercel@latest
