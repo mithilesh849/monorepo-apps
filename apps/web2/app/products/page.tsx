@@ -1,4 +1,4 @@
-import { getProducts, Product } from '../../lib/api';
+import { getProducts, Product } from '@/lib/api';
 import Link from 'next/link';
 
 export default async function ProductsPage() {
