@@ -29,11 +29,11 @@ export default function NotFound() {
         <h1 className="not-found-title">Page Not Found</h1>
         
         <p className="not-found-message">
-          Oops! The page you're looking for doesn't exist or has been moved.
+          Oops! The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         
         <p className="not-found-submessage">
-          Don't worry, let's get you back on track.
+          Don&apos;t worry, let&apos;s get you back on track.
         </p>
         
         <div className="not-found-actions">

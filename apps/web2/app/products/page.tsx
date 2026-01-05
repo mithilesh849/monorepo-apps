@@ -1,5 +1,6 @@
 import { getProducts, Product } from '@/lib/api';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default async function ProductsPage() {
   let products: Product[] = [];
@@ -32,7 +33,13 @@ export default async function ProductsPage() {
           {products.map((product) => (
             <div key={product.id} className="product-card">
               {product.image && (
-                <img src={product.image} alt={product.name} className="product-image" />
+                <Image 
+                  src={product.image} 
+                  alt={product.name} 
+                  width={280}
+                  height={200}
+                  className="product-image"
+                />
               )}
               <h2>{product.name}</h2>
               <p className="product-description">{product.description}</p>
